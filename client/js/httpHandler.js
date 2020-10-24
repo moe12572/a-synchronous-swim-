@@ -42,9 +42,9 @@
         // reload the pages
         // window.location = window.location.href;
         // cb(data);
-        // SwimTeam.move(data);
+        SwimTeam.move(data);
         console.log('initializing get request ', data);
-        setTimeout(getRequest, 100);
+        setTimeout(getRequest, 1000);
       },
       error: (e) => {
         console.log('error');
