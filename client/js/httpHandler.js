@@ -30,7 +30,7 @@
 
   };
 
-  const getRequest = () => {
+  const getRequest = (cb) => {
     $.ajax({
       type: 'GET',
       // data: 'position',
@@ -41,12 +41,17 @@
       success: (data) => {
         // reload the pages
         // window.location = window.location.href;
+        // cb(data);
+        // SwimTeam.move(data);
         console.log('initializing get request ', data);
+        setTimeout(getRequest, 100);
+      },
+      error: (e) => {
+        console.log('error');
       }
     });
     // console.log('asdfasf');
-  };
-
+  }
 
 
   $('form').on('submit', function(e) {
@@ -66,12 +71,7 @@
 
     ajaxFileUplaod(file);
   });
-
+  // getRequest();
 })();
-
-// module.exports.getRequest = getRequest;
-
-
-
 
 
