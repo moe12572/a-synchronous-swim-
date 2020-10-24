@@ -33,18 +33,19 @@
   const getRequest = () => {
     $.ajax({
       type: 'GET',
-      data: 'position',
+      // data: 'position',
       url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
-      success: ({position}) => {
-        // reload the page
+      success: (data) => {
+        // reload the pages
         // window.location = window.location.href;
-        console.log('initializing get request ', position);
+        console.log('initializing get request ', data);
       }
     });
-  }
+    // console.log('asdfasf');
+  };
 
 
 
@@ -67,3 +68,10 @@
   });
 
 })();
+
+// module.exports.getRequest = getRequest;
+
+
+
+
+
