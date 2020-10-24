@@ -27,6 +27,9 @@ const logKeypress = (key) => {
 var message = ''; // a buffer to collect key presses
 //
 module.exports.initialize = (callback) => {
+  //module.exports.initialize = function(callback) {
+
+  //};
 
   // setup an event handler on standard input
   process.stdin.on('keypress', (chunk, key) => {
