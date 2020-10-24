@@ -27,7 +27,6 @@
         window.location = window.location.href;
       }
     });
-
   };
 
   const getRequest = () => {
