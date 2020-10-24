@@ -14,10 +14,11 @@
   const ajaxFileUplaod = (file) => {
     var formData = new FormData();
     formData.append('file', file);
+
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
@@ -26,7 +27,26 @@
         window.location = window.location.href;
       }
     });
+
   };
+
+  const getRequest = () => {
+    $.ajax({
+      type: 'GET',
+      data: 'position',
+      url: serverUrl,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: ({position}) => {
+        // reload the page
+        // window.location = window.location.href;
+        console.log('initializing get request ', position);
+      }
+    });
+  }
+
+
 
   $('form').on('submit', function(e) {
     e.preventDefault();
