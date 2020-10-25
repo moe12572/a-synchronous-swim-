@@ -1,6 +1,6 @@
 (function() {
 
-  const serverUrl = 'http://127.0.0.1:3000';
+  const serverUrl = 'http://127.0.0.1:3000'/background.jpg;
 
   //
   // TODO: build the swim command fetcher here
@@ -29,7 +29,7 @@
     });
   };
 
-  const getRequest = (cb) => {
+  const getCommandRequest = () => {
     $.ajax({
       type: 'GET',
       // data: 'position',
@@ -70,7 +70,7 @@
 
     ajaxFileUplaod(file);
   });
-  // getRequest();
+  // getCommandRequest();
 })();
 
 
