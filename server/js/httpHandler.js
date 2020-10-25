@@ -15,31 +15,65 @@ module.exports.initialize = (queue) => {
 };
 
 module.exports.router = (req, res, next = ()=>{}) => {
-  console.log('Serving request type ' + req.method + ' for url ' + req.url);
+  // console.log('Serving request type ' + req.method + ' for url ' + req.url);
 
   if (req.method === 'OPTIONS') {
     res.writeHead(200, headers);
   }
 
-
-  if (req.method === 'GET') {
-    // var position = ['up', 'down', 'left', 'right'];
-    // var randomIndex = Math.floor(Math.random() * 4);
-    // res.write(position[randomIndex]);
-    // res.write('');
-    res.writeHead(200, headers);
-    // console.log('------------', req.url, this.backgroundImageFile);
-    if (req.url === this.backgroundImageFile) {
-      console.log(multipart.getFile('a'));
-      if (multipart.getFile('nameoftheimage') === null) {
-        res.writeHead(404, headers);
-      }
-    }
-    var a = msg.dequeue();
-    if(a !== undefined) {
-      res.write(a);
-    }
+  if (req.method === 'POST') {
+    this.backgroundImageFile = path.join('.', req.url);
+    res.writeHead(201, headers);
   }
+
+
+  //GET request for swim command
+
+
+  console.log('------------', req.url);
+  // GET request for background image
+
+  // http://127.0.0.1:3000/background.jpg
+
+
+  if(req.method === 'GET') {
+    if (req.url === '/') {
+      var a = msg.dequeue();
+      if (a !== undefined) {
+        res.write(a);
+      }
+      res.writeHead(200, headers);
+      res.end();
+    } else if (req.url === '/background.jpg') {
+      // fs.readFile(this.backgroundImageFile)
+      // console.log('1231223112323123', this.backgroundImageFile);
+      // res.writeHead(404, headers);
+      fs.readFile(module.exports.backgroundImageFile, (err, data) => {
+        if (err) {
+          res.writeHead(404, headers);
+        } else {
+          res.writeHead(200, headers);
+          res.write(data, 'binary');
+        }
+        res.end();
+        next();
+      });
+    }
+
+
+  }
+
+
+
+
+  // else if ((req.method === 'GET') && (req.url !== '/background.jpg') && (req.url !== '/')) {
+  //   res.writeHead(404, headers);
+  // }
+
+
+
+
+
   res.end();
 
   next(); // invoke next() at the end of a request to help with testing!
